@@ -1,0 +1,84 @@
+<?xml version="1.0" ?>
+<robot name="Simulation_Bot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+<xacro:include filename="$(find Simulation_Bot_description)/urdf/materials.xacro" />
+<xacro:include filename="$(find Simulation_Bot_description)/urdf/Simulation_Bot.trans" />
+<xacro:include filename="$(find Simulation_Bot_description)/urdf/Simulation_Bot.gazebo" />
+<link name="base_link">
+  <inertial>
+    <origin xyz="-0.015591595541995344 0.001218378158529534 0.014380430120185033" rpy="0 0 0"/>
+    <mass value="0.3006093659034608"/>
+    <inertia ixx="0.00029" iyy="0.000419" izz="0.000592" ixy="5e-06" iyz="-8e-06" ixz="2.6e-05"/>
+  </inertial>
+  <visual>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://Simulation_Bot_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://Simulation_Bot_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="right_wheel_1">
+  <inertial>
+    <origin xyz="-2.0827168730613854e-07 -0.0010000000000000286 7.772805970373414e-07" rpy="0 0 0"/>
+    <mass value="0.12724402760725145"/>
+    <inertia ixx="2.2e-05" iyy="3.9e-05" izz="2.2e-05" ixy="0.0" iyz="0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.046 0.06 -0.008" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://Simulation_Bot_description/meshes/right_wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0.046 0.06 -0.008" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://Simulation_Bot_description/meshes/right_wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="left_wheel_1">
+  <inertial>
+    <origin xyz="-2.0827168733389412e-07 0.0010000000000000495 7.77280597046015e-07" rpy="0 0 0"/>
+    <mass value="0.1272440276072515"/>
+    <inertia ixx="2.2e-05" iyy="3.9e-05" izz="2.2e-05" ixy="0.0" iyz="0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.046 -0.06 -0.008" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://Simulation_Bot_description/meshes/left_wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0.046 -0.06 -0.008" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://Simulation_Bot_description/meshes/left_wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<joint name="Revolute 1" type="continuous">
+  <origin xyz="-0.046 -0.06 0.008" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="right_wheel_1"/>
+  <axis xyz="0.0 1.0 0.0"/>
+</joint>
+
+<joint name="Revolute 2" type="continuous">
+  <origin xyz="-0.046 0.06 0.008" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="left_wheel_1"/>
+  <axis xyz="0.0 1.0 0.0"/>
+</joint>
+
+</robot>
